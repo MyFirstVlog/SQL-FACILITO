@@ -49,8 +49,5 @@ VALUES (1, 'El psicoanalista', '2012-09-30'),
     (1, 'El psicoanalista 3', '2012-10-30'),
     (1, 'El psicoanalista 4', '2012-11-30');
 
-SELECT nombre,
-       apellido,
-       IF(genero='M', 'Mero macho', 'Mera Nena') AS status_migratorio
-FROM authors;
+SELECT * FROM authors;
 SELECT * FROM books;

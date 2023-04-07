@@ -1,0 +1,11 @@
+'''
+
+ALTER TABLE books ADD ventas INT UNSIGNED NOT NULL;
+ALTER TABLE books ADD ventas INT UNSIGNED NOT NULL DEFAULT 10;
+ALTER TABLE books DROP COLUMN ventas;
+ALTER TABLE books RENAME COLUMN stories;
+ALTER TABLE usuarios MODIFY telefono VARCHAR(50);
+ALTER TABLE usuarios ADD FOREIGN KEY(grupo_id) REFERENCES grupos(grupo_id);
+ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
+
+'''
