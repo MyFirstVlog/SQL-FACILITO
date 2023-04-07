@@ -25,7 +25,6 @@ VALUES (3, 'Alejandro', 'Estrada', 'M', '1997-09-30', 'Colombia'),
        (4, 'Carolina', 'Ramirez', 'F', '1997-09-30', 'Colombia'),
        (5, 'Isabel', 'Jurado', 'F', '1997-09-30', 'Colombia'),
        (6, 'Meliza', 'Sanchez', 'F', '1997-09-30', 'Colombia'),
-       (7, '', '', 'F', '1997-09-30', 'Colombia'),
-       (8, 'Milena', 'Cruz', 'F', '1997-09-30', 'Colombia');
+       (7, 'Milena', 'Cruz', 'F', '1997-09-30', 'Colombia');
 
 SELECT * FROM authors;
