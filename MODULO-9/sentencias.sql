@@ -25,9 +25,6 @@ CREATE TABLE libros(
   FOREIGN KEY (autor_id) REFERENCES autores(autor_id) ON DELETE CASCADE
 );
 
-ALTER TABLE libros ADD ventas INT UNSIGNED NOT NULL DEFAULT 0;
-ALTER TABLE libros ADD stock INT UNSIGNED DEFAULT 10;
-
 CREATE TABLE usuarios(
   usuario_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   nombre varchar(25) NOT NULL,
@@ -36,6 +33,19 @@ CREATE TABLE usuarios(
   email varchar(50) NOT NULL,
   fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE libros_usuarios(
+  libro_id INT UNSIGNED NOT NULL,
+  usuario_id INT UNSIGNED NOT NULL,
+
+  FOREIGN KEY (libro_id) REFERENCES libros(libro_id),
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
+  fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE libros ADD ventas INT UNSIGNED NOT NULL DEFAULT 0;
+ALTER TABLE libros ADD stock INT UNSIGNED DEFAULT 10;
 
 INSERT INTO autores (nombre, apellido, seudonimo, fecha_nacimiento, genero, pais_origen )
   VALUES ('Stephen Edwin', 'King', 'Richard Bachman', '1947-09-27', 'M', 'USA'),
@@ -117,3 +127,11 @@ VALUES  ('Eduardo', 'García', 'eduardogpg', 'eduardo@codigofacilito.com'),
         ('Codi1', 'Facilito', 'codigofacilito', 'ayuda@codigofacilito.com'),
         ('Codi2', 'Facilito', 'codigofacilito', 'ayuda@codigofacilito.com'),
         ('Codi3', 'Facilito', 'codigofacilito', 'ayuda@codigofacilito.com');
+
+INSERT INTO libros_usuarios(libro_id, usuario_id)
+VALUES  (1, 1), (2, 1), (3, 1),
+        (55, 3), (55, 3), (55, 3);
+
+DESC autores;
+DESC libros;
+DESC usuarios;
