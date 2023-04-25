@@ -41,51 +41,6 @@ insert into passengers values (42, 'Berlin', 'Paris', '07:12');
 insert into passengers values (43, 'Berlin', 'Paris', '12:03');
 insert into passengers values (44, 'Berlin', 'Paris', '20:00');
 
-SELECT id, COUNT(id) AS passengers FROM buses 
-INNER JOIN (SELECT bus_time, 
-            passengers_id,
-            passengers_origin,
-            passengers_destination FROM (SELECT  sort_time_passengers.id as passengers_id, 
-            sort_time_passengers.origin as passengers_origin, 
-            sort_time_passengers.destination as passengers_destination, 
-            sort_time_passengers.time as passengers_time, 
-            MIN(sort_time_buses.time) as bus_time 
-            FROM (SELECT * FROM passengers ORDER BY passengers.time) AS sort_time_passengers
-            INNER JOIN (SELECT * FROM buses ORDER BY buses.time) AS sort_time_buses
-            ON  sort_time_passengers.origin = sort_time_buses.origin AND
-                sort_time_passengers.destination = sort_time_buses.destination AND
-                sort_time_passengers.time <= sort_time_buses.time
-            GROUP BY    passengers_id, passengers_time, 
-                        passengers_origin, passengers_destination) AS time_leave
-            ) as summary_table
-ON  buses.origin = summary_table.passengers_origin AND
-    buses.destination = summary_table.passengers_destination AND
-    buses.time = summary_table.bus_time
-GROUP BY id;
-
-
-SELECT id, COUNT(id) AS passengers FROM buses 
-INNER JOIN (SELECT bus_time, 
-            passengers_id,
-            passengers_origin,
-            passengers_destination FROM (SELECT  sort_time_passengers.id as passengers_id, 
-            sort_time_passengers.origin as passengers_origin, 
-            sort_time_passengers.destination as passengers_destination, 
-            sort_time_passengers.time as passengers_time, 
-            MIN(sort_time_buses.time) as bus_time 
-            FROM (SELECT * FROM passengers ORDER BY passengers.time) AS sort_time_passengers
-            INNER JOIN (SELECT * FROM buses ORDER BY buses.time) AS sort_time_buses
-            ON  sort_time_passengers.origin = sort_time_buses.origin AND
-                sort_time_passengers.destination = sort_time_buses.destination AND
-                sort_time_passengers.time <= sort_time_buses.time
-            GROUP BY    passengers_id, passengers_time, 
-                        passengers_origin, passengers_destination) AS time_leave
-            ) as summary_table
-ON  buses.origin = summary_table.passengers_origin AND
-    buses.destination = summary_table.passengers_destination AND
-    buses.time = summary_table.bus_time
-GROUP BY id;
-
 SELECT b1.id, (SELECT COUNT(p1.id) 
     FROM passengers AS p1 
     WHERE p1.origin = b1.origin AND
